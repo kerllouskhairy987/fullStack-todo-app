@@ -9,6 +9,7 @@ import TodoList from "../components/TodoList";
 import TodosPage from "../pages/Todos";
 import ForgetPassword from "../pages/ForgetPassword";
 import ForgetPasswordForm from "../pages/ResetPassword";
+import PageNotFound from "../pages/PageNotFound";
 
 const storageKey = "loggedInUser"
 const userDataString = localStorage.getItem(storageKey);
@@ -23,7 +24,6 @@ const router = createBrowserRouter(
             <Route path="/" element={<RootLayout />} errorElement={<ErrorHandler />} >
 
                 <Route index element={<ProtectedRoute isAllowed={userData?.jwt} redirectPath="/login" data={userData}>
-                    {/* <HomePage /> */}
                     <TodoList />
                 </ProtectedRoute>} />
 
@@ -52,6 +52,9 @@ const router = createBrowserRouter(
                 </ProtectedRoute>} />
 
             </Route>
+
+            {/* Page Not Found */}
+            <Route path="*" element={<PageNotFound />} />
         </>
     )
 );
